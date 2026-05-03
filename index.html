@@ -43,11 +43,11 @@
   }
   .avatar-wrap { flex-shrink: 0; position: relative; }
   .avatar {
-    width: 96px; height: 96px; border-radius: 50%;
+    width: 72px; height: 72px; border-radius: 50%;
     object-fit: cover; object-position: center top;
     display: block;
-    border: 2.5px solid rgba(79,142,247,0.5);
-    box-shadow: 0 0 0 5px rgba(79,142,247,0.1), 0 8px 24px rgba(0,0,0,0.35);
+    border: 2px solid rgba(79,142,247,0.5);
+    box-shadow: 0 0 0 4px rgba(79,142,247,0.1), 0 6px 18px rgba(0,0,0,0.35);
     image-rendering: high-quality;
   }
   .header-text { text-align: left; }
@@ -251,6 +251,8 @@
     .student-header { flex-direction: column; align-items: flex-start; }
     .exam-count-badge { margin-left: 0; }
     .exam-subject { font-size: 1.3rem; }
+    /* Large monospace course watermark — hidden on small screens */
+    .card-header::after { display: none; }
   }
 </style>
 </head>
@@ -309,11 +311,11 @@ function getFacilityClass(f) {
 }
 
 function facilityPill(f) {
-  if (!f) return '<span class="fac-pill room">🏛️ Room</span>';
+  if (!f) return '<span class="fac-pill room">🚪 Room</span>';
   const l = f.toLowerCase();
   if (l.includes('computer')) return '<span class="fac-pill lab">💻 Computer Lab</span>';
   if (l.includes('drawing'))  return '<span class="fac-pill drawing">✏️ Drawing Hall</span>';
-  return '<span class="fac-pill room">🏛️ Room</span>';
+  return '<span class="fac-pill room">🚪 Room</span>';
 }
 
 function doLookup() {
@@ -360,7 +362,7 @@ function doLookup() {
               <span class="meta-value time">${e.time}</span>
             </div>
             <div class="meta-item">
-              <span class="meta-label">Location</span>
+              <span class="meta-label">Location (room)</span>
               <span class="meta-value loc">${e.room}</span>
             </div>
             <div class="meta-item">
